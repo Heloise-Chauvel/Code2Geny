@@ -1,0 +1,15 @@
+<html>
+<head>
+
+
+
+<body>
+    <h1>form devoir pour la classe {{classe_id}}</h1>
+    Merci de mettre la valeur "{{classe_id}}" dans IdClasse et la valeur "{{uneClasse.professeur}}" dans IdProfesseur.
+    <!--classe/{{classe_id}}/ -->
+    <form method="post" action="">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="create post" >
+    </form>
+</body>
+</html>

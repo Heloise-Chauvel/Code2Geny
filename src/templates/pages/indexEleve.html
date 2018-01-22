@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.username}}</title>
+    <center><u>[ Eleve :  {{user.username}} id : {{ user.id }}]</u></center>
+</head>
+<body>
+
+        <th><u>Devoirs de {{user.username}}</u></th>
+
+taille : {{ taille }}
+{% if  taille > 0 %}
+        <br/><br/>
+    {% for unDevoir in listDevoirs %}
+        <li><a href="/devoir/{{unDevoir.id}}/"> {{unDevoir.titre}} </a></li>
+    {% endfor %}
+
+{%else%}
+<h3>Vous n'avez pas de devoirs !</h3>
+
+{%endif%}
+
+        //FOR TESTS
+{% for uneParticipe in allParticipeEleve %}
+        <li>participations : idEleve : {{ uneParticipe.idEtudiant }}  idDevoir : {{ uneParticipe.idDevoir }}</li>
+    {% endfor %}
+
+</body>
+</html>

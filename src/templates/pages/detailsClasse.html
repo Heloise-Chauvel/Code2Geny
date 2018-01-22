@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>détails de la classe {{uneClasse.nom}}</title>
+    <center><u>Gestion [ {{user.username}} ]</u></center>
+</head>
+<body>
+
+<u>Devoirs à rendre de la classe d'id {{uneClasse.id}}<br/>
+    Tenu par{{uneClasse.professeur}}</u> <br/><br/>
+{{unDevoir.titre}}
+
+{%if devoirs %}
+{% for unDevoir in devoirs %}
+        <li><a href="/devoir/{{unDevoir.id}}/"> {{unDevoir.titre}} </a></li>
+    {% endfor %}
+{%else%}
+<h3>Il n'y a pas de devoirs disponibles !</h3>
+
+{%endif%}
+<br/>
+<!--<a href="/devoir/creerDevoir/{{uneClasse.id}}">[ Creer un nouveau devoir ]</a>-->
+
+<a href="/create/{{uneClasse.id}}">[ Creer un nouveau devoir ]</a>
+</body>
+</html>

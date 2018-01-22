@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>devoirs de la classe {{uneClasse.nom}}</title>
+    <center><u>Gestion [ {{user.username}} ]</u></center>
+</head>
+<body>
+Détails du devoir " {{ unDevoir.titre }} d'id : {{unDevoir.id }} "<br/>
+
+{%if unDevoir %}
+
+    <ul>
+        <li>titre           : {{ unDevoir.titre}} </li>
+        <li>consignes       : {{ unDevoir.consignes}} </li>
+        <li>date Debut      : {{ unDevoir.dateDebut}} </li>
+        <li>date Fin        : {{ unDevoir.dateFin}} </li>
+        <li>path Sujet      : {{ unDevoir.pathSujet}} </li>
+        <li>path Correction : {{ unDevoir.pathCorrection}} </li>
+        <li>path Entrees : {{ unDevoir.pathEntrees}} </li>
+        <li>idProfesseur : {{ unDevoir.idProfesseur}} </li>
+        <li>idClasse : {{ unDevoir.idClasse}} </li>
+    </ul>
+{%else%}
+    <h3>Il n'y a pas de devoirs disponibles !</h3>
+
+{%endif%}
+
+</body>
+</html>
