@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User, Group
 from django.db import models
@@ -8,7 +9,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .form import DevoirForm
+from .form import DevoirForm, UploadFileForm
+from django.shortcuts import render
+from django.conf import settings
+
 
 
 def devoir_create(request,classe_id):
@@ -112,6 +116,7 @@ def detailsDevoir(request,devoir_id):
     except Classe.DoesNotExist:
         raise Http404("La classe n'existe pas")
     return render(request,'pages/detailsDevoir.html',context)
+
 
 
 

@@ -9,3 +9,10 @@ class DevoirForm(forms.ModelForm):
         #id classe et id prof doit être remplit avec les variables
         fields = ['titre','consignes','dateDebut','dateFin','pathSujet','pathCorrection','pathEntrees','idProfesseur','idClasse',]
 
+
+
+
+class UploadFileForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    file = forms.FileField()
+
