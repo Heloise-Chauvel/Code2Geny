@@ -29,7 +29,7 @@ class Devoir(models.Model):
         return ' ID ' + self.idDevoir + ' - TITRE  '+ self.titre + ' - PROF  '+ self.idProfesseur + ' -ID CLASSE '+ self.idClasse
 
 class Realisation(models.Model):
-       note=models.IntegerField
+       note=models.IntegerField(default='0')
        idEtudiant=models.CharField(max_length=100)
        emailEtudiant=models.CharField(max_length=100)
        idDevoir=models.CharField(max_length=100)

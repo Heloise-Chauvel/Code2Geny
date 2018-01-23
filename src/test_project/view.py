@@ -26,22 +26,22 @@ def handle_uploaded_file(f):
 
 
 def devoir_create(request,classe_id):
-    if request.method == 'POST':
-        uneClasse = Classe.objects.get(pk=classe_id)
-        form = DevoirForm(request.POST,request.FILES or None )
-        if form.is_valid():
-
-            instance = form.save(commit=False)
-            instance.save()
-            return redirect('/index/')
+     #if request.method == 'POST':
+        #uneClasse = Classe.objects.get(pk=classe_id)
+    form = DevoirForm(request.POST,request.FILES or None )
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return redirect('/index/')
     else:
         form = DevoirForm(request.POST,request.FILES or None )
         uneClasse = Classe.objects.get(pk=classe_id)
+        #unProf=User.objects.filter(id=id)
         context={
-        'uneClasse' : uneClasse,
-         "form" : form,
-        'classe_id' : classe_id,
-    }
+            'uneClasse' : uneClasse,
+            "form" : form,
+            'classe_id' : classe_id,
+            }
     return render(request, 'pages/devoir_form.html', context)
 
 def devoir_update(request, id=None):
