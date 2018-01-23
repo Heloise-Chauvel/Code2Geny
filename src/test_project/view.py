@@ -36,13 +36,15 @@ def devoir_create(request,classe_id):
     else:
         form = DevoirForm(request.POST,request.FILES or None )
         uneClasse = Classe.objects.get(pk=classe_id)
-        #unProf=User.objects.filter(id=id)
+        #unProf=User.objects.filter(username__icontains=uneClasse.professeur)
         context={
             'uneClasse' : uneClasse,
             "form" : form,
             'classe_id' : classe_id,
+            #'unProf' : unProf
             }
     return render(request, 'pages/devoir_form.html', context)
+
 
 def devoir_update(request, id=None):
     instance=get_object_or_404(Devoir,id=id)
