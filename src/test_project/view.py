@@ -24,6 +24,8 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
+def invoiceView(request):
+    return render(request, 'pages/invoice.html')
 
 def devoir_create(request,classe_id):
      #if request.method == 'POST':

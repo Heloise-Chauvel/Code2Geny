@@ -39,6 +39,8 @@ urlpatterns = [
     path('index/', view.index),
     #admin
     path('admin/', admin.site.urls),
+    #invoice
+    url(r'^invoice/$', view.invoiceView, name='invoice'),
 path('cours', view.cours),
     #login?
     url('login/$', auth_views.login, name='login'),
