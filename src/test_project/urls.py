@@ -33,8 +33,10 @@ urlpatterns = [
     url(r'^devoir/creerDevoir/([0-9]+)/$',view.remplirNouveauDevoir,name='creerDevoir'),
     #login
     path('', auth_views.login, name='login'),
-    #form devoir prof   create/[xxx]
+    # #form devoir prof   create/[xxx]
     url(r'^create/([0-9]+)/$', view.devoir_create,name="createDevoir"),
+    #form rendre Devoir  create/[xxx]
+    url(r'^rendre/([0-9]+)/$', view.devoir_rendre,name="rendreDevoir"),
     #index
     path('index/', view.index),
     #admin

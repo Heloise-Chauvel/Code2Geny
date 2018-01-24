@@ -6,10 +6,13 @@
 <body>
     <h1>form devoir pour la classe {{classe_id}}</h1>
     Merci de mettre la valeur "{{classe_id}}" dans IdClasse et la valeur "{{uneClasse.professeur}}" dans IdProfesseur.
-    <!--classe/{{classe_id}}/ -->
+
+    <!-- Creation du formulaire -->
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
+
+        <!-- appel du formulaire sous form de PARAGRAPHE (_p) -->
         {{ form.as_p }}
-        <input type="submit" class="yellow lighten-1" value="create post" >
+        <input type="submit" class="yellow lighten-1" value="Creer un devoir" >
     </form>
 </body>
 </html>

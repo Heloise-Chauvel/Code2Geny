@@ -1,15 +1,26 @@
 from django import forms
 from .models import Devoir
+from .models import Realisation
 
+#dans cette classe se trouvent tout les form de l'application
 
 class DevoirForm(forms.ModelForm):
     class Meta:
+
+        #Définition du model suivi
         model = Devoir
-        #Les paths doivent etre rentrés automatiquements avec le nom du devoir et le dossier de la classe
-        #id classe et id prof doit être remplit avec les variables
+
+        #Selection des champs a afficher
         fields = ['titre','consignes','dateDebut','dateFin','pathCorrection','pathEntrees','idProfesseur','idClasse',]
 
+class rendreDevoirForm(forms.ModelForm):
+    class Meta:
 
+        #Définition du model suivi
+        model = Realisation
+
+        #Selection des champs a afficher
+        fields = ['reponse','idEtudiant','emailEtudiant']
 
 
 class UploadFileForm(forms.Form):

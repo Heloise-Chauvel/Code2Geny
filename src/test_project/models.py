@@ -21,7 +21,7 @@ class Devoir(models.Model):
     pathSujet=models.CharField(max_length=100)
     pathCorrection=models.FileField(max_length=100)
     pathEntrees=models.FileField(max_length=100)
-    consignes=models.CharField(max_length=100,  default='')
+    consignes=models.TextField(default='')
     idProfesseur=models.CharField(max_length=100)
     idClasse=models.CharField(max_length=100,  default='')
 
@@ -31,8 +31,9 @@ class Devoir(models.Model):
 class Realisation(models.Model):
        note=models.IntegerField(default='0')
        idEtudiant=models.CharField(max_length=100)
-       emailEtudiant=models.CharField(max_length=100)
+       emailEtudiant=models.EmailField(max_length=100)
        idDevoir=models.CharField(max_length=100)
+       reponse=models.FileField(default='')
 
 class Participe(models.Model):
     idEtudiant=models.CharField(max_length=100,default='')

@@ -8,23 +8,29 @@
 <body>
 Détails du devoir " {{ unDevoir.titre }} d'id : {{unDevoir.id }} "<br/>
 
+<!-- Verification : Si il y a bien un devoir -->
 {%if unDevoir %}
 
+    <!-- Definition des affichages voulus -->
     <ul>
         <li>titre           : {{ unDevoir.titre}} </li>
         <li>consignes       : {{ unDevoir.consignes}} </li>
         <li>date Debut      : {{ unDevoir.dateDebut}} </li>
         <li>date Fin        : {{ unDevoir.dateFin}} </li>
-        <li>path Sujet      : {{ unDevoir.pathSujet}} </li>
         <li>path Correction : {{ unDevoir.pathCorrection}} </li>
         <li>path Entrees : {{ unDevoir.pathEntrees}} </li>
         <li>idProfesseur : {{ unDevoir.idProfesseur}} </li>
         <li>idClasse : {{ unDevoir.idClasse}} </li>
     </ul>
+
+<!--Si pas de devoirs : erreur -->
 {%else%}
     <h3>Il n'y a pas de devoirs disponibles !</h3>
 
 {%endif%}
+
+<!--bouton pour rendre le devoir-->
+<a href="/rendre/{{unDevoir.id}}">[ Rendre le devoir ]</a>
 
 </body>
 </html>
