@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .form import DevoirForm, UploadFileForm
+from .form import DevoirForm, UploadFileForm,rendreDevoirForm
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -23,6 +23,27 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
+
+def devoir_rendre(request,devoir_id):
+     #if request.method == 'POST':
+        #uneClasse = Classe.objects.get(pk=classe_id)
+    form = rendreDevoirForm(request.POST,request.FILES or None )
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        #A changer
+        return redirect('/index/')
+    else:
+        form = rendreDevoirForm(request.POST,request.FILES or None )
+        unDevoir = Classe.objects.get(pk=devoir_id)
+        #unProf=User.objects.filter(username__icontains=uneClasse.professeur)
+        context={
+            'unDevoir' : unDevoir,
+            "form" : form,
+            'devoir_id' : devoir_id,
+
+            }
+    return render(request, 'pages/devoir_form.html', context)
 
 
 def devoir_create(request,classe_id):

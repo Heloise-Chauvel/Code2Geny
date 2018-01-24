@@ -9,22 +9,24 @@
 
         <th><u>Devoirs de {{user.username}}</u></th>
 
+<!-- Vérification : si présence de devoirs -->
 taille : {{ taille }}
 {% if  taille > 0 %}
         <br/><br/>
+        <!-- Pou chaques devoirs dans la liste : affichage -->
     {% for unDevoir in listDevoirs %}
         <li><a href="/devoir/{{unDevoir.id}}/"> {{unDevoir.titre}} </a></li>
     {% endfor %}
-
+<!-- Si pas de devoirs : erreur -->
 {%else%}
 <h3>Vous n'avez pas de devoirs !</h3>
 
 {%endif%}
 
-        //FOR TESTS
-{% for uneParticipe in allParticipeEleve %}
-        <li>participations : idEleve : {{ uneParticipe.idEtudiant }}  idDevoir : {{ uneParticipe.idDevoir }}</li>
-    {% endfor %}
+        <!--//FOR TESTS-->
+<!--{% for uneParticipe in allParticipeEleve %}-->
+        <!--<li>participations : idEleve : {{ uneParticipe.idEtudiant }}  idDevoir : {{ uneParticipe.idDevoir }}</li>-->
+    <!--{% endfor %} -->
 
 </body>
 </html>
