@@ -31,7 +31,7 @@ class Devoir(models.Model):
 class Realisation(models.Model):
        note=models.IntegerField(default='0')
        idEtudiant=models.CharField(max_length=100)
-       emailEtudiant=models.CharField(max_length=100)
+       emailEtudiant=models.EmailField(max_length=100)
        idDevoir=models.CharField(max_length=100)
        reponse=models.FileField(default='')
 

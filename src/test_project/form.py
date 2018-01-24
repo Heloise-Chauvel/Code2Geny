@@ -20,7 +20,7 @@ class rendreDevoirForm(forms.ModelForm):
         model = Realisation
 
         #Selection des champs a afficher
-        fields = ['reponse',]
+        fields = ['reponse','idEtudiant','emailEtudiant']
 
 
 class UploadFileForm(forms.Form):

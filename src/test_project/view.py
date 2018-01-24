@@ -15,6 +15,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.template import Context
 
 
 
@@ -25,8 +26,7 @@ def handle_uploaded_file(f):
 
 
 def devoir_rendre(request,devoir_id):
-     #if request.method == 'POST':
-        #uneClasse = Classe.objects.get(pk=classe_id)
+    current_user = request.user
     form = rendreDevoirForm(request.POST,request.FILES or None )
     if form.is_valid():
         instance = form.save(commit=False)
@@ -38,33 +38,60 @@ def devoir_rendre(request,devoir_id):
         unDevoir = Classe.objects.get(pk=devoir_id)
         #unProf=User.objects.filter(username__icontains=uneClasse.professeur)
         context={
+            'current_user' : current_user,
             'unDevoir' : unDevoir,
             "form" : form,
             'devoir_id' : devoir_id,
 
             }
-    return render(request, 'pages/devoir_form.html', context)
+    return render(request, 'pages/rendreDevoir_form.html', context)
 
 
 def devoir_create(request,classe_id):
-     #if request.method == 'POST':
-        #uneClasse = Classe.objects.get(pk=classe_id)
-    form = DevoirForm(request.POST,request.FILES or None )
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
-        return redirect('/index/')
-    else:
-        form = DevoirForm(request.POST,request.FILES or None )
-        uneClasse = Classe.objects.get(pk=classe_id)
-        #unProf=User.objects.filter(username__icontains=uneClasse.professeur)
-        context={
-            'uneClasse' : uneClasse,
-            "form" : form,
-            'classe_id' : classe_id,
-            #'unProf' : unProf
+    uneClasse = Classe.objects.get(pk=classe_id)
+    form=DevoirForm()
+    context={
+    'uneClasse' : uneClasse,
+    'classe_id' : classe_id,
+        'form' : form
             }
-    return render(request, 'pages/devoir_form.html', context)
+    if request.method == 'POST':
+        form = DevoirForm(request.POST,request.FILES or None )
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return redirect('/index/')
+    else:
+
+        return render(request, 'pages/devoir_form.html',context )
+
+
+# def devoir_create(request, classe_id):
+#
+#     if request.method == 'POST':
+#         form = DevoirForm(request.POST,request.FILES or None )
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/index/')
+#         else :
+#             uneClasse = Classe.objects.get(pk=classe_id)
+#             context={
+#             'uneClasse' : uneClasse,
+#             #"form" : form,
+#             'classe_id' : classe_id,
+#             }
+#             #return render(request, 'pages/devoir_form.html',context)
+
+    # else :
+    #     uneClasse = Classe.objects.get(pk=classe_id)
+    #     form = DevoirForm(request.POST,request.FILES or None )
+    #     context={
+    #     'uneClasse' : uneClasse,
+    #     "form" : form,
+    #     'classe_id' : classe_id,
+    #     }
+    #     return render(request, 'pages/devoir_form.html',context )
 
 
 def devoir_update(request, id=None):
