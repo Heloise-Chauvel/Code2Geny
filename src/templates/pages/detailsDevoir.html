@@ -29,8 +29,12 @@ Détails du devoir " {{ unDevoir.titre }} d'id : {{unDevoir.id }} "<br/>
 
 {%endif%}
 
+
+{% if Prof == "FALSE" %}
 <!--bouton pour rendre le devoir-->
 <a href="/rendre/{{unDevoir.id}}">[ Rendre le devoir ]</a>
+
+{% endif %}
 
 </body>
 </html>
