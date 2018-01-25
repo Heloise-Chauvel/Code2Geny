@@ -16,6 +16,10 @@
             <!--bouton creer un nouveau devoir-->
             <a href="/rendre/{{unDevoir.id}}" class="btn yellow lighten-1 right">Rendre le devoir</a>
             {% endif %}
+            {% if Prof == "TRUE" %}
+            <!--bouton creer un nouveau devoir-->
+            <a href="/recupNote/{{unDevoir.id}}" class="btn yellow lighten-1 right">Récupérer les notes</a>
+            {% endif %}
             <p><u>Détails du devoir {{ unDevoir.titre }} d'id : {{unDevoir.id }}</u></p>
 
             <!-- Verification : Si il y a bien un devoir -->

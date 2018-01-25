@@ -4,8 +4,8 @@
 
 
 <body>
-    <h1>Devoir n° {{devoir_id}}</h1>
-    Merci de mettre {{ current_user.id }} dans idEtudiant !
+    <h1>Devoir n° {{ devoir_id }}</h1>
+    Merci de mettre {{ current_user.id }} dans idEtudiant et {{ devoir_id }} dans IdDevoir
 
     <!-- Creation du formulaire -->
     <form method="post" enctype="multipart/form-data">{% csrf_token %}

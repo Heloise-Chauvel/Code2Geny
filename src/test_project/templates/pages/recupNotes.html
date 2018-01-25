@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperation note [{{ user.username }}]</title>
+</head>
+<body>
+<p>Recuperation note [{{ user.username }}]</p>
+<table>
+    <p>Voici les notes : </p>
+{% if realisations %}
+    {% for uneRealisation in realisations %}
+        <p> Note : {{ uneRealisation.note }}</p>
+        <p>IdEtudiant : {{uneRealisation.idEtudiant }}</p>
+        <p>emailEtudiant : {{uneRealisation.emailEtudiant }}</p>
+    {% endfor %}
+{%else%}
+    <h3>il n'y a pas de notes ! </h3>
+{%endif%}
+
+</table>
+</body>
+</html>

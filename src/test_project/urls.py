@@ -37,6 +37,8 @@ urlpatterns = [
     url(r'^create/([0-9]+)/$', view.devoir_create,name="createDevoir"),
     #form rendre Devoir  create/[xxx]
     url(r'^rendre/([0-9]+)/$', view.devoir_rendre,name="rendreDevoir"),
+    #Recuperer les notes d'un devoir
+    url(r'^recupNote/([0-9]+)/$', view.recupNote,name="recupNote"),
     #index
     path('index/', view.index),
     #admin
@@ -47,6 +49,8 @@ path('cours', view.cours),
     #login?
     url('login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
+    #invoice/
+    url(r'^invoice/$',view.invoiceView,name='invoice'),
 
 
 ]
