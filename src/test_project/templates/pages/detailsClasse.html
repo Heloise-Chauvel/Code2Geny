@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="nav">Détails de la classe {{uneClasse.nom}}</nav>
+        <div class="wrapper">
+            <!--bouton creer un nouveau devoir-->
+            <a href="/create/{{uneClasse.id}}" class="btn yellow lighten-1 right">Créer un nouveau devoir</a>
+            <p><u>Devoirs à rendre de la classe d'id {{uneClasse.id}} tenue par {{uneClasse.professeur}}</u></p>
+
+            {%if devoirs %}
+            <table class="striped"><br/><br/>
+            {% for unDevoir in devoirs %}
+                <tr><td><a href="/devoir/{{unDevoir.id}}/"> {{unDevoir.titre}} </a></td></tr>
+            {% endfor %}
+            </table>
+            {%else%}
+            <h3>Il n'y a pas de devoirs disponibles !</h3>
+
+            {%endif%}
+        </div>
+    </body>
+</html>

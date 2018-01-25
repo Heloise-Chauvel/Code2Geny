@@ -1,0 +1,42 @@
+.wrapper{
+    padding-top: 60px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: #fff;
+    z-index: -10;
+    min-height: 1000px;
+    padding: 40px;
+}
+
+body{
+    background-color: #eee;
+}
+
+.login{
+    padding:40px;
+    padding-bottom: 60px;
+}
+
+input:focus {
+  border-bottom: 1px solid #ffee58 !important;
+  -webkit-box-shadow: 0 1px 0 0 #ffee58 !important;
+  -moz-box-shadow: 0 1px 0 0 #ffee58 !important;
+  box-shadow: 0 1px 0 0 #ffee58 !important;
+}
+
+h1{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.nav{
+    background-color: #ffee58;
+    height: 50px;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+ul {
+  list-style-type: none;
+}

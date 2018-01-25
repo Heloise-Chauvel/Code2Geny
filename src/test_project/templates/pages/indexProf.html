@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="nav">Interface de gestion de {{user.username}}</nav>
+        <div class="wrapper">
+            <p><u>Classes de {{user.username}}</u></p>
+
+            {%if classes%}
+            <table class="striped"><br/><br/>
+            {% for uneClasse in classes %}
+                <tr><td><a href="/classe/{{uneClasse.id}}/"> {{uneClasse.nom}} </a></td></tr>
+            {% endfor %}
+            </table>
+            {%else%}
+            <h3>You don't have any classes</h3>
+
+            {%endif%}
+        </div>
+    </body>
+</html>

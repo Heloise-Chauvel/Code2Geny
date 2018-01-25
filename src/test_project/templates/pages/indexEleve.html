@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="nav">Interface de gestion de {{user.username}}</nav>
+        <div class="wrapper">
+            <p><u>Devoirs de {{user.username}}</u></p>
+
+            <!-- Vérification : si présence de devoirs -->
+            {% if  taille > 0 %}
+            <table class="striped"><br/><br/>
+            {% for unDevoir in listDevoirs %}
+                <tr><td><a href="/devoir/{{unDevoir.id}}/"> {{unDevoir.titre}} </a></td></tr>
+            {% endfor %}
+            </table>
+            {%else%}
+            <h3>Vous n'avez pas de devoir !</h3>
+
+            {%endif%}
+        </div>
+    </body>
+</html>
