@@ -1,18 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
 <html>
-<head>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+    <nav class="nav">Nouveau devoir pour la classe {{classe_id}}</nav>
+        <div class="wrapper">
+            <p>Merci de mettre la valeur "{{classe_id}}" dans IdClasse et la valeur "{{uneClasse.professeur}}" dans IdProfesseur.</p>
 
-
-
-<body>
-    <h1>form devoir pour la classe {{classe_id}}</h1>
-    Merci de mettre la valeur "{{classe_id}}" dans IdClasse et la valeur "{{uneClasse.professeur}}" dans IdProfesseur.
-
-    <!-- Creation du formulaire -->
-    <form method="post" enctype="multipart/form-data">{% csrf_token %}
-
-        <!-- appel du formulaire sous form de PARAGRAPHE (_p) -->
-        {{ form.as_p }}
-        <input type="submit" class="yellow lighten-1" value="Creer un devoir" >
-    </form>
-</body>
+            <!-- Creation du formulaire -->
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <!-- appel du formulaire sous form de LISTE (_ul) -->
+                {{ form.as_ul }}
+                <input type="submit" class="btn yellow lighten-1 right" value="Creer un devoir" >
+            </form>
+        </div>
+    </body>
 </html>

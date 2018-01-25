@@ -1,36 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>devoirs de la classe {{uneClasse.nom}}</title>
-    <center><u>Gestion [ {{user.username}} ]</u></center>
-</head>
-<body>
-Détails du devoir " {{ unDevoir.titre }} d'id : {{unDevoir.id }} "<br/>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="nav">{{unDevoir.titre}}</nav>
+        <div class="wrapper">
+            {% if Prof == "FALSE" %}
+            <!--bouton creer un nouveau devoir-->
+            <a href="/rendre/{{unDevoir.id}}" class="btn yellow lighten-1 right">Rendre le devoir</a>
+            {% endif %}
+            <p><u>Détails du devoir {{ unDevoir.titre }} d'id : {{unDevoir.id }}</u></p>
 
-<!-- Verification : Si il y a bien un devoir -->
-{%if unDevoir %}
+            <!-- Verification : Si il y a bien un devoir -->
+            {%if unDevoir %}
+            <!-- Definition des affichages voulus -->
+            <table class="striped"><br/><br/>
 
-    <!-- Definition des affichages voulus -->
-    <ul>
-        <li>titre           : {{ unDevoir.titre}} </li>
-        <li>consignes       : {{ unDevoir.consignes}} </li>
-        <li>date Debut      : {{ unDevoir.dateDebut}} </li>
-        <li>date Fin        : {{ unDevoir.dateFin}} </li>
-        <li>path Correction : {{ unDevoir.pathCorrection}} </li>
-        <li>path Entrees : {{ unDevoir.pathEntrees}} </li>
-        <li>idProfesseur : {{ unDevoir.idProfesseur}} </li>
-        <li>idClasse : {{ unDevoir.idClasse}} </li>
-    </ul>
+                <tr>
+                    <td>Titre</td>
+                    <td>{{ unDevoir.titre}}</td>
+                </tr>
+                <tr>
+                    <td>Consignes</td>
+                    <td>{{ unDevoir.consignes}}</td>
+                </tr>
+                <tr>
+                    <td>Date début</td>
+                    <td>{{ unDevoir.dateDebut}}</td>
+                </tr>
+                <tr>
+                    <td>Date fin</td>
+                    <td>{{ unDevoir.dateFin}}</td>
+                </tr>
+                <tr>
+                    <td>Fichier correction</td>
+                    <td>{{ unDevoir.pathCorrection}}</td>
+                </tr>
+                <tr>
+                    <td>Fichier entrées</td>
+                    <td>{{ unDevoir.pathEntrees}}</td>
+                </tr>
+                <tr>
+                    <td>idProfesseur</td>
+                    <td>{{ unDevoir.idProfesseur}}</td>
+                </tr>
+                <tr>
+                    <td>idClasse</td>
+                    <td>{{ unDevoir.idClasse}}</td>
+                </tr>
+            </table>
+            {%else%}
+            <h3>Il n'y a pas de devoir disponible !</h3>
 
-<!--Si pas de devoirs : erreur -->
-{%else%}
-    <h3>Il n'y a pas de devoirs disponibles !</h3>
-
-{%endif%}
-
-<!--bouton pour rendre le devoir-->
-<a href="/rendre/{{unDevoir.id}}">[ Rendre le devoir ]</a>
-
-</body>
+            {%endif%}
+        </div>
+    </body>
 </html>

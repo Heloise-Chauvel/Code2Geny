@@ -179,10 +179,16 @@ def remplirNouveauDevoir(request,classe_id):
 
 def detailsDevoir(request,devoir_id):
     try:
+        current_user=request.user
         unDevoir = Devoir.objects.get(pk=devoir_id)
-
+        group=Group.objects.get(name="Prof")
+        if group in current_user.groups.all():
+            Prof="TRUE"
+        else:
+            Prof="FALSE"
         context={
-            'unDevoir' : unDevoir,
+            'Prof' : Prof,
+            'unDevoir' : unDevoir
         }
     except Classe.DoesNotExist:
         raise Http404("La classe n'existe pas")

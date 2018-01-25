@@ -2,7 +2,6 @@
 {% load staticfiles %}
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>CorrectCode</title>
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -13,10 +12,9 @@
     <body>
         <nav class="nav">Détails de la classe {{uneClasse.nom}}</nav>
         <div class="wrapper">
+            <!--bouton creer un nouveau devoir-->
             <a href="/create/{{uneClasse.id}}" class="btn yellow lighten-1 right">Créer un nouveau devoir</a>
             <p><u>Devoirs à rendre de la classe d'id {{uneClasse.id}} tenue par {{uneClasse.professeur}}</u></p>
-
-            {{unDevoir.titre}}
 
             {%if devoirs %}
             <table class="striped"><br/><br/>
