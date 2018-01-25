@@ -55,11 +55,13 @@ def devoir_rendre(request,devoir_id):
 def devoir_create(request,classe_id):
     uneClasse = Classe.objects.get(pk=classe_id)
     form=DevoirForm()
+    current_user=request.user
     context={
-    'uneClasse' : uneClasse,
-    'classe_id' : classe_id,
-        'form' : form
-            }
+        'uneClasse' : uneClasse,
+        'classe_id' : classe_id,
+        'form' : form,
+        'current_user' : current_user,
+    }
     if request.method == 'POST':
         form = DevoirForm(request.POST,request.FILES or None )
 
@@ -182,10 +184,12 @@ def detailsDevoir(request,devoir_id):
         current_user=request.user
         unDevoir = Devoir.objects.get(pk=devoir_id)
         group=Group.objects.get(name="Prof")
+
         if group in current_user.groups.all():
             Prof="TRUE"
         else:
             Prof="FALSE"
+
         context={
             'Prof' : Prof,
             'unDevoir' : unDevoir

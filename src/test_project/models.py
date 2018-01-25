@@ -10,6 +10,7 @@ class Classe(models.Model):
     nom=models.CharField(max_length=100)
     professeur=models.CharField(max_length=100)
 
+
     def __str__(self):
         return self.nom + ' - '+ self.professeur
 

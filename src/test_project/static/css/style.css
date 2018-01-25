@@ -10,6 +10,9 @@
 
 body{
     background-color: #eee;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .login{
@@ -37,6 +40,52 @@ h1{
     position: relative;
 }
 
-ul {
-  list-style-type: none;
+.navmaterialize{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    width: 100%;
+    line-height: 64px;
+}
+
+.paypal{
+    text-align: center;
+}
+
+.paypalTable{
+    margin : 0 auto;
+}
+
+.CCbtn{
+    text-decoration: none;
+    color: #fff;
+    background-color: #ffee58;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+    font-size: 1rem;
+    outline: 0;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+}
+
+.ab{
+    height: 50px;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.paypalWrapper{
+    margin: 0 auto;
+    border: 1px #eee solid;
+    border-radius: 2px;
+    width: 50%;
+    padding: 10px;
 }
