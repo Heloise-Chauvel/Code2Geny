@@ -1,18 +1,33 @@
+<!DOCTYPE html>
+{% load staticfiles %}
 <html>
-<head>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2370690981931884",
+            enable_page_level_ads: true
+          });
+        </script>
+    </head>
+    <body>
+        <nav class="nav">Devoir n° {{devoir_id}}</nav>
+        <div class="wrapper">
+            <p>Merci de mettre {{ current_user.id }} dans idEtudiant et {{ devoir_id }} dans IdDevoir</p>
+            <p><u>Classes de {{user.username}}</u></p>
 
-
-
-<body>
-    <h1>Devoir n° {{ devoir_id }}</h1>
-    Merci de mettre {{ current_user.id }} dans idEtudiant et {{ devoir_id }} dans IdDevoir
-
-    <!-- Creation du formulaire -->
-    <form method="post" enctype="multipart/form-data">{% csrf_token %}
-
-        <!-- appel du formulaire sous form de PARAGRAPHE (_p) -->
-        {{ form.as_p }}
-        <input type="submit" value="create post" >
-    </form>
-</body>
+             <!-- Creation du formulaire -->
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <!-- appel du formulaire sous form de LISTE (_ul) -->
+                {{ form.as_ul }}
+                <input type="submit" value="create post" class="btn yellow lighten-1 right">
+            </form>
+        </div>
+    </body>
 </html>

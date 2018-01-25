@@ -8,17 +8,22 @@
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2370690981931884",
+            enable_page_level_ads: true
+          });
+        </script>
     </head>
     <body>
         <div class="wrapper">
-            <div class="login card">
-                <h1>Login</h1>
-                <form method="post">
-                  {% csrf_token %}
-                  {{ form.as_p }}
-                  <button type="submit" class="btn yellow lighten-1 right">Login</button>
-                </form>
-            </div>
+            <h1>Login</h1>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn yellow lighten-1 right">Login</button>
+            </form>
         </div>
     </body>
 </html>
