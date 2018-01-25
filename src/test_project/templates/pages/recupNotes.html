@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Recuperation note [{{ user.username }}]</title>
-</head>
-<body>
-<p>Recuperation note [{{ user.username }}]</p>
-<table>
-    <p>Voici les notes : </p>
-{% if realisations %}
-    {% for uneRealisation in realisations %}
-        <p> Note : {{ uneRealisation.note }}</p>
-        <p>IdEtudiant : {{uneRealisation.idEtudiant }}</p>
-        <p>emailEtudiant : {{uneRealisation.emailEtudiant }}</p>
-    {% endfor %}
-{%else%}
-    <h3>il n'y a pas de notes ! </h3>
-{%endif%}
+{% load staticfiles %}
+<html>
+    <head>
+        <title>CorrectCode</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2370690981931884",
+            enable_page_level_ads: true
+          });
+        </script>
+    </head>
+    <body>
+        <nav class="nav">Récupération note [{{ user.username }}]</nav>
+        <div class="wrapper">
+            <p><u>Voici les notes : </u></p>
 
-</table>
-</body>
+            {% if realisations %}
+                <table class="striped">
+                {% for uneRealisation in realisations %}
+                    <tr>
+
+                    <td><p>IdEtudiant : {{uneRealisation.idEtudiant }}</p></td>
+                    <td><p>emailEtudiant : {{uneRealisation.emailEtudiant }}</p></td>
+                    <td><p> Note : {{ uneRealisation.note }}</p></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            {%else%}
+                <h3>Il n'y a pas de notes ! </h3>
+            {%endif%}
+
+        </div>
+    </body>
 </html>
+
