@@ -48,43 +48,46 @@ def error (request):
     return render(request, 'pages/error.html')
 
 def devoir_rendre(request,devoir_id):
+    unDevoir = Devoir.objects.get(pk=devoir_id)
     current_user = request.user
-    form = rendreDevoirForm(request.POST,request.FILES or None )
-
-    if form.is_valid():
-        ##########
-        lesRealisationsDevoir=Realisation.objects.filter(idDevoir=devoir_id)
-        for uneRealisation in lesRealisationsDevoir:
-            if uneRealisation.idEtudiant == str(current_user.id) :
-                return redirect('/error/')
-        ##############################
-        instance = form.save(commit=False)
-        instance.idEtudiant=current_user.id
-        instance.idDevoir=devoir_id
-        instance.save()
-        leDevoir=Devoir.objects.get(pk=devoir_id)
-        lesRealisationsDevoir=Realisation.objects.filter(idDevoir=devoir_id)
-        for uneRealisation in lesRealisationsDevoir:
-            if uneRealisation.idEtudiant == str(current_user.id) :
-                if uneRealisation.submited=="FALSE":
-                    cRealisationEtudiant=""
-                    cRealisationEtudiant=str(uneRealisation.reponse)
-
-                    idRea=uneRealisation.id
-                    correction(leDevoir,cRealisationEtudiant,idRea)
-                    return redirect('/index/')
-        return redirect('/error/' )
-    else:
-        form = rendreDevoirForm(request.POST,request.FILES or None )
-        unDevoir = Devoir.objects.get(pk=devoir_id)
-        #unProf=User.objects.filter(username__icontains=uneClasse.professeur)
-        context={
+    form = rendreDevoirForm()
+    leDevoir=Devoir.objects.get(pk=devoir_id)
+    lesRealisationsDevoir=Realisation.objects.filter(idDevoir=devoir_id)
+    cRealisationEtudiant=""
+    context={
             'current_user' : current_user,
             'unDevoir' : unDevoir,
             "form" : form,
             'devoir_id' : devoir_id,
             }
-    return render(request, 'pages/rendreDevoir_form.html', context)
+    if request.method =="POST" :
+
+        form = rendreDevoirForm(request.POST,request.FILES or None )
+
+        if form.is_valid():
+
+            instance = form.save(commit=False)
+
+            instance.idEtudiant=current_user.id
+            instance.idDevoir=devoir_id
+
+            instance.save()
+
+            for uneRealisation in lesRealisationsDevoir:
+                if uneRealisation.idEtudiant == str(current_user.id) :
+
+                    if uneRealisation.submited=="FALSE":
+
+                        cRealisationEtudiant=""
+                        cRealisationEtudiant=str(uneRealisation.reponse)
+                        idRea=uneRealisation.id
+                        correction(leDevoir,cRealisationEtudiant,idRea)
+
+                        return redirect('/index/')
+                    else:
+                        return redirect('/error/' )
+    else:
+        return render(request, 'pages/rendreDevoir_form.html', context)
 
 
 
@@ -105,6 +108,7 @@ def devoir_create(request,classe_id):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.idClasse=classe_id
+            instance.IdProfesseur=current_user.id
             instance.save()
             return redirect('/index/')
     else:

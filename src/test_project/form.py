@@ -12,6 +12,9 @@ class DevoirForm(forms.ModelForm):
 
         #Selection des champs a afficher
         fields = ['titre','consignes','dateDebut','dateFin','pathCorrection','pathEntrees','idProfesseur','idClasse',]
+        widgets = {'idProfesseur': forms.HiddenInput(),
+                   'idClasse': forms.HiddenInput(),
+                   }
 
 class rendreDevoirForm(forms.ModelForm):
     class Meta:
@@ -21,7 +24,9 @@ class rendreDevoirForm(forms.ModelForm):
 
         #Selection des champs a afficher
         fields = ['reponse','idEtudiant','emailEtudiant','idDevoir']
-
+        widgets = {'idEtudiant': forms.HiddenInput(),
+                   'idDevoir': forms.HiddenInput(),
+                   }
 
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)

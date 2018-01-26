@@ -23,17 +23,17 @@ class Devoir(models.Model):
     pathCorrection=models.FileField(max_length=100)
     pathEntrees=models.FileField(max_length=100)
     consignes=models.TextField(default='')
-    idProfesseur=models.CharField(max_length=100)
-    idClasse=models.CharField(max_length=100,  default='')
+    idProfesseur=models.CharField(max_length=100,default=1)
+    idClasse=models.CharField(max_length=100,default=1)
 
     def __str__(self):
         return ' ID ' + self.idDevoir + ' - TITRE  '+ self.titre + ' - PROF  '+ self.idProfesseur + ' -ID CLASSE '+ self.idClasse
 
 class Realisation(models.Model):
        note=models.IntegerField(default='0')
-       idEtudiant=models.CharField(max_length=100)
+       idEtudiant=models.CharField(max_length=100, default=5)
        emailEtudiant=models.EmailField(max_length=100)
-       idDevoir=models.CharField(max_length=100)
+       idDevoir=models.CharField(max_length=100, default=5)
        reponse=models.FileField(default='')
        submited=models.CharField(max_length=100,default='FALSE')
 
