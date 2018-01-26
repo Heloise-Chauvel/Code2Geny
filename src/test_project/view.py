@@ -44,35 +44,35 @@ def invoiceView(request):
     return render(request, 'pages/invoice.html')
 
 
+def error (request):
+    return render(request, 'pages/error.html')
+
 def devoir_rendre(request,devoir_id):
     current_user = request.user
     form = rendreDevoirForm(request.POST,request.FILES or None )
 
     if form.is_valid():
-
-
+        ##########
+        lesRealisationsDevoir=Realisation.objects.filter(idDevoir=devoir_id)
+        for uneRealisation in lesRealisationsDevoir:
+            if uneRealisation.idEtudiant == str(current_user.id) :
+                return redirect('/error/')
+        ##############################
         instance = form.save(commit=False)
+        instance.idEtudiant=current_user.id
+        instance.idDevoir=devoir_id
         instance.save()
-
-
-        #David
         leDevoir=Devoir.objects.get(pk=devoir_id)
         lesRealisationsDevoir=Realisation.objects.filter(idDevoir=devoir_id)
-        cRealisationEtudiant=""
-
         for uneRealisation in lesRealisationsDevoir:
-            # sys.stderr.write("idEtu")
-            # # sys.stderr.write(str(uneRealisation.idEtudiant))
-            # # sys.stderr.write("userId")
-            # #sys.stderr.write(current_user.id)
             if uneRealisation.idEtudiant == str(current_user.id) :
-                cRealisationEtudiant=""
-                cRealisationEtudiant=str(uneRealisation.reponse)
+                if uneRealisation.submited=="FALSE":
+                    cRealisationEtudiant=""
+                    cRealisationEtudiant=str(uneRealisation.reponse)
 
-                idRea=uneRealisation.id
-                correction(leDevoir,cRealisationEtudiant,idRea)
-                return redirect('/index/')
-
+                    idRea=uneRealisation.id
+                    correction(leDevoir,cRealisationEtudiant,idRea)
+                    return redirect('/index/')
         return redirect('/error/' )
     else:
         form = rendreDevoirForm(request.POST,request.FILES or None )
@@ -83,9 +83,10 @@ def devoir_rendre(request,devoir_id):
             'unDevoir' : unDevoir,
             "form" : form,
             'devoir_id' : devoir_id,
-
             }
     return render(request, 'pages/rendreDevoir_form.html', context)
+
+
 
 
 def devoir_create(request,classe_id):
@@ -103,6 +104,7 @@ def devoir_create(request,classe_id):
 
         if form.is_valid():
             instance = form.save(commit=False)
+            instance.idClasse=classe_id
             instance.save()
             return redirect('/index/')
     else:
@@ -110,31 +112,6 @@ def devoir_create(request,classe_id):
         return render(request, 'pages/devoir_form.html',context )
 
 
-# def devoir_create(request, classe_id):
-#
-#     if request.method == 'POST':
-#         form = DevoirForm(request.POST,request.FILES or None )
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/index/')
-#         else :
-#             uneClasse = Classe.objects.get(pk=classe_id)
-#             context={
-#             'uneClasse' : uneClasse,
-#             #"form" : form,
-#             'classe_id' : classe_id,
-#             }
-#             #return render(request, 'pages/devoir_form.html',context)
-
-    # else :
-    #     uneClasse = Classe.objects.get(pk=classe_id)
-    #     form = DevoirForm(request.POST,request.FILES or None )
-    #     context={
-    #     'uneClasse' : uneClasse,
-    #     "form" : form,
-    #     'classe_id' : classe_id,
-    #     }
-    #     return render(request, 'pages/devoir_form.html',context )
 
 
 def devoir_update(request, id=None):
@@ -297,14 +274,17 @@ def correction(leDevoir,realisationEtudiant,idRea):
 
     out = str(output[0].decode('utf-8')).strip() # return en utf8 pour supprimer les symbole inutile et enlever les espaces
     uneRealisation = Realisation.objects.get(pk=idRea)
-    # uneRealisation.note=20
-    # uneRealisation.save()
+
     sys.stderr.write("out : "+out+"\n")
-    if (int(sortie) == int(out)): # la variable string est à remplacer par les valeurs saisis parle prof
+
+    #Comparaison entree sortie
+    if (int(sortie) == int(out) ): # la variable string est à remplacer par les valeurs saisis parle prof
         uneRealisation.note = 20
+        uneRealisation.submited="TRUE"
         uneRealisation.save()
-        return 20
+        return 1
     else:
-        uneRealisation.note = 10
+        uneRealisation.note = 3
+        uneRealisation.submited="TRUE"
         uneRealisation.save()
-        return 0
+        return 1

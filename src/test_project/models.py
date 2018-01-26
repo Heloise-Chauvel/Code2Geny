@@ -35,6 +35,7 @@ class Realisation(models.Model):
        emailEtudiant=models.EmailField(max_length=100)
        idDevoir=models.CharField(max_length=100)
        reponse=models.FileField(default='')
+       submited=models.CharField(max_length=100,default='FALSE')
 
 class Participe(models.Model):
     idEtudiant=models.CharField(max_length=100,default='')

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>CorrectCode</title>
+        <title>error</title>
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <!-- Compiled and minified JavaScript -->
@@ -15,18 +15,21 @@
             enable_page_level_ads: true
           });
         </script>
-    </head>
-    <body>
-        <div class="wrapper">
-            <h1>Login</h1>
-            <form method="post">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit" class="btn yellow lighten-1 right">Login</button>
-            </form>
-<br/><br/><br/><br/>
-            <a href="/invoice/" class="btn yellow lighten-1 right">Souscrire</a>
-        </div>
-    </body>
+<body>
+    <div class="wrapper">
+        <p>Vous avez déjà ou mal rendu ce devoir... Contactez votre professeur !</p>
+        <a href="/index/" class="btn yellow lighten-1 right">retour au menu</a>
+    </div>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
 

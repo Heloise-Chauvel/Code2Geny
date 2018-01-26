@@ -51,6 +51,9 @@ path('cours', view.cours),
     url(r'^logout/$', auth_views.logout, name='logout'),
     #invoice/
     url(r'^invoice/$',view.invoiceView,name='invoice'),
+    #error/
+     url(r'^error/$',view.error,name='invoice'),
+
 
 
 ]

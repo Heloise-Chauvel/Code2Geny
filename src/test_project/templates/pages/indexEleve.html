@@ -19,7 +19,7 @@
     <body>
         <nav class="nav">Interface de gestion de {{user.username}}</nav>
         <div class="wrapper">
-            <p><u>Devoirs de {{user.username}}</u></p>
+            <p><u>Devoirs de {{user.username}} d'id : {{ user.id }}</u></p>
 
             <!-- Vérification : si présence de devoirs -->
             {% if  taille > 0 %}
