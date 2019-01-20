@@ -47,7 +47,7 @@ urlpatterns = [
     url(r'^invoice/$', view.invoiceView, name='invoice'),
 path('cours', view.cours),
     #login?
-    url('login/$', auth_views.login, name='login'),
+    url(r'login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     #invoice/
     url(r'^invoice/$',view.invoiceView,name='invoice'),
