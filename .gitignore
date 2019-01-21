@@ -6,10 +6,10 @@ tcl/
 .idea/
 Include/
 
-src/blog/migrations/__pycache__/**
-
 src/blog/__pycache__/**
 
-src/test_project/__pycache__
+src/blog/migrations/__pycache__/**
+
 src/test_project/__pycache__/**
-src/test_project/__pycache__/**/
+
+src/test_project/migrations/__pycache__/**
